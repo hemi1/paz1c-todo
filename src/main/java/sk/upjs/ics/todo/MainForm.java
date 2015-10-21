@@ -5,7 +5,6 @@
  */
 package sk.upjs.ics.todo;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,7 +13,7 @@ import java.util.List;
  */
 public class MainForm extends javax.swing.JFrame {
     
-    private PamatovyUlohaDao pamatovyUlohaDao = new PamatovyUlohaDao();
+    private MySql
 
     /**
      * Creates new form MainForm
@@ -34,10 +33,22 @@ public class MainForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        TerminButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         ulohyList = new javax.swing.JList();
         ulohaTextField = new javax.swing.JTextField();
         pridatButton = new javax.swing.JButton();
+        Jdateswingx = new org.jdesktop.swingx.JXDatePicker();
+
+        TerminButton.setText("Nastavit Termin");
+        TerminButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TerminButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("(ziaden termin)");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,10 +74,12 @@ public class MainForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(ulohaTextField)
+                        .addComponent(ulohaTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Jdateswingx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(pridatButton))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -75,7 +88,8 @@ public class MainForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ulohaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pridatButton))
+                    .addComponent(pridatButton)
+                    .addComponent(Jdateswingx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -87,13 +101,18 @@ public class MainForm extends javax.swing.JFrame {
     private void pridatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pridatButtonActionPerformed
         Uloha uloha = new Uloha();
         uloha.setNazov(ulohaTextField.getText());
-        uloha.setDate(new Date());
+        uloha.setDate(Jdateswingx.getDate());
         
         pamatovyUlohaDao.pridat(uloha);
         
         List<Uloha> ulohy = pamatovyUlohaDao.dajVsetky();
         ulohyList.setListData(ulohy.toArray());
     }//GEN-LAST:event_pridatButtonActionPerformed
+
+    private void TerminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TerminButtonActionPerformed
+    
+    
+    }//GEN-LAST:event_TerminButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -131,6 +150,9 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private org.jdesktop.swingx.JXDatePicker Jdateswingx;
+    private javax.swing.JButton TerminButton;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton pridatButton;
     private javax.swing.JTextField ulohaTextField;
